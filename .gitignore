@@ -1,2 +1,5 @@
 cartoon/*.wav
+fanel/*.wav
+fanel/*.mp4
+fanel/render.log
 cartoon/fonts/fonts.css
