@@ -8,7 +8,7 @@ const {chromium}=require('playwright');const {spawn}=require('child_process');co
   const len=await p.evaluate(()=>__film.renderAudio());const wav=out.replace(/\.mp4$/,'')+'.wav';const fd=fs.openSync(wav,'w');
   for(let i=0;i<len;i+=4<<20){fs.writeSync(fd,Buffer.from(await p.evaluate(([i,s])=>__film.wavChunk(i,s),[i,4<<20]),'base64'))}fs.closeSync(fd);
   console.log('audio done');
-  const ff=spawn('ffmpeg',['-y','-loglevel','error','-f','image2pipe','-framerate',String(FPS),'-c:v','mjpeg','-i','-','-i',wav,'-c:v','libx264','-preset','medium','-crf','21','-pix_fmt','yuv420p','-c:a','aac','-b:a','160k','-shortest','-movflags','+faststart',out],{stdio:['pipe','inherit','inherit']});
+  const ff=spawn('ffmpeg',['-y','-loglevel','error','-f','image2pipe','-framerate',String(FPS),'-c:v','mjpeg','-i','-','-i',wav,'-c:v','libx264','-preset','medium','-crf','28','-tune','grain','-pix_fmt','yuv420p','-c:a','aac','-b:a','160k','-shortest','-movflags','+faststart',out],{stdio:['pipe','inherit','inherit']});
   const N=Math.round(300*FPS);
   for(let f=0;f<N;f++){const d=await p.evaluate(t=>{__film.drawFrame(t);return document.getElementById('c').toDataURL('image/jpeg',.92)},f/FPS);
     const buf=Buffer.from(d.slice(d.indexOf(',')+1),'base64');if(!ff.stdin.write(buf))await new Promise(r=>ff.stdin.once('drain',r));if(f%720===0)console.log('frame',f,'/',N)}
