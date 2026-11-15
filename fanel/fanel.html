@@ -1,4 +1,4 @@
-<title>Fănel și Legile Fizicii</title>
+<title>Fănel: O zi cu ghinion</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
 @font-face {
@@ -75,7 +75,7 @@ canvas{width:100%;height:100%;display:block}
 </style>
 
 <div class="hall">
-  <div class="marquee"><h1>Fănel și Legile Fizicii</h1><p>Desen animat · 5 minute · fără dialog</p></div>
+  <div class="marquee"><h1>Fănel în „O zi cu ghinion”</h1><p>Desen animat · 5 minute · fără dialog</p></div>
   <div class="screen"><canvas id="c" width="1280" height="720"></canvas><button class="big" id="bigplay" aria-label="Pornește filmul">&#9654;</button></div>
   <div class="bar">
     <button id="play" aria-label="Pornește sau oprește">&#9654;</button>
@@ -84,7 +84,7 @@ canvas{width:100%;height:100%;display:block}
     <span id="time">0:00 / 5:00</span>
     <button id="fs" aria-label="Ecran complet">&#x26F6;</button>
   </div>
-  <p class="note">Fănel, un domn mic și iute la mânie, are o zi plină de ghinioane, iar pisica Mitzi îi face toate farsele. Fiecare gafă arată o lege a fizicii: gravitația, inerția, pârghia și frecarea. Cu muzică și efecte sonore, fără dialog. Apăsați Play pentru sunet.</p>
+  <p class="note">Fănel, un domn mic și iute la mânie, are o dimineață plină de ghinioane, iar pisica Mitzi îi face toate farsele. Fără dialog, cu muzică și efecte sonore. Apăsați Play pentru sunet.</p>
 </div>
 
 <script>
@@ -418,6 +418,7 @@ function moth(x,y,ph){g.save();g.translate(x,y);const w=Math.abs(Math.sin(ph))*1
 function sweat(x,y,τ){for(let i=0;i<2;i++){const p=((τ*1.5+i/2)%1);g.globalAlpha=1-p;g.beginPath();const sx=x+i*16,sy=y+p*30;g.moveTo(sx,sy-8);g.quadraticCurveTo(sx+6,sy,sx,sy+4);g.quadraticCurveTo(sx-6,sy,sx,sy-8);P('#8ac4ff',1.5);g.globalAlpha=1}}
 function heartsUp(x,y,τ,n=3){for(let i=0;i<n;i++){const p=((τ*.6+i/n)%1);g.save();g.globalAlpha=1-p;g.translate(x+Math.sin(p*6+i)*24,y-p*110);g.scale(1.6,1.6);heartPath();P('#e0405a',1.5);g.restore();g.globalAlpha=1}}
 function crack(x,y){g.strokeStyle=OL;g.lineWidth=3;[[-80,10],[-40,30],[60,20],[90,6]].forEach(([dx,dy])=>{g.beginPath();g.moveTo(x,y);g.lineTo(x+dx*.5,y+dy*.6);g.lineTo(x+dx,y+dy);g.stroke()})}
+function caption(){}
 function shadow(x,y,w=60){ell(x,y,w,9);g.fillStyle='rgba(40,20,10,.22)';g.fill()}
 
 // ================= cards =================
@@ -451,7 +452,7 @@ function sceneLeader(τ){g.fillStyle='#c9c2b0';g.fillRect(-20,-20,W+40,H+40);con
 function sceneTitle(τ,t){g.save();g.translate(W/2,H/2);g.rotate(τ*.15);for(let i=0;i<24;i++){g.beginPath();g.moveTo(0,0);g.arc(0,0,1000,i*TAU/24,(i+1)*TAU/24);g.closePath();g.fillStyle=i%2?'#3d6fb5':'#5a8ad0';g.fill()}g.restore();
   const vg=g.createRadialGradient(W/2,H/2,150,W/2,H/2,720);vg.addColorStop(0,'rgba(255,240,200,.35)');vg.addColorStop(1,'rgba(20,20,60,.55)');g.fillStyle=vg;g.fillRect(0,0,W,H);
   const a=back(seg(τ,.3,1.3));g.save();g.translate(W/2,150);g.scale(a,a);text('FĂNEL',0,0,150,'#e8b23a',FD,400,'center','#2a1a10',14);g.restore();
-  const c=back(seg(τ,1.5,2.5));g.save();g.translate(W/2,300);g.scale(c,c);g.rotate(Math.sin(τ*2)*.02);g.beginPath();g.roundRect(-400,-56,800,112,28);P('#fff3d6',6);text('și Legile Fizicii',0,4,72,'#c8352c',FD,400,'center','#2a1a10',6);g.restore();
+  const c=back(seg(τ,1.5,2.5));g.save();g.translate(W/2,300);g.scale(c,c);g.rotate(Math.sin(τ*2)*.02);g.beginPath();g.roundRect(-400,-56,800,112,28);P('#fff3d6',6);text('O zi cu ghinion',0,4,72,'#c8352c',FD,400,'center','#2a1a10',6);g.restore();
   const sl=easeOut(seg(τ,2.6,3.8));
   fanel(lerp(-200,330,sl),680,1.05,{face:1,hr:[60,-200+Math.sin(τ*8)*16],mouth:'grin',look:[.6,0],tt:τ});
   cat(lerp(1480,960,sl),680,1.25,{face:-1,hr:[30,-110+Math.sin(τ*8+1)*14],smug:.45,mouth:'smirk',tt:τ,look:[.6,0]})}
@@ -833,13 +834,79 @@ function sceneRecap(τ,t){const a=seg(τ,0,.6)*(1-seg(τ,9.4,10));paperCard(a);g
   if(τ>7.4){g.globalAlpha=a*seg(τ,7.4,8);text('Fizica e peste tot... chiar și în pijamale!',W/2,600,32,'#3f6f2a',FT,900)}g.globalAlpha=1}
 function sceneEnd(τ){const a=seg(τ,0,.8)*(1-seg(τ,5.2,6));paperCard(a);g.globalAlpha=a;text('Sfârșit',W/2,H/2-50,120,'#b02a22',FD,400,'center','#3a2414',3);text('Fănel și Mitzi vă salută!',W/2,H/2+70,38,'#3a2414',FT,700);g.save();g.translate(W/2,H/2+170);g.scale(.6,.6);clock(0,0,1,τ,{});g.restore();g.globalAlpha=1}
 
+
+function irisMask(x,y,r){g.save();g.beginPath();g.rect(-20,-20,W+40,H+40);g.arc(x,y,Math.max(0,r),0,TAU,true);g.fillStyle='#000';g.fill('evenodd');g.restore()}
+function tr(fn,dur,inn,out){return (τ,t)=>{fn(τ,t);if(inn&&τ<1.2)irisMask(W/2,H/2,lerp(0,1500,ease(seg(τ,0,1.2))));if(out&&τ>dur-1.2)irisMask(W/2,H/2,lerp(1500,0,ease(seg(τ,dur-1.2,dur))))}}
+// kitchen: the cat gets there first
+function pre1(τ,t){g.drawImage(SET.kit,0,0);teapot(1160,420,1.1);
+  g.fillStyle='#8a5a35';[600,915].forEach(lx=>{g.beginPath();g.rect(lx,470,16,170);P('#8a5a35',3)});g.beginPath();g.rect(580,460,370,16);P('#a86a3a',3);tablecloth(570,960,458,48,0);plate(690,456);egg(690,450);cup(790,456);teapot(880,458,.8);
+  g.beginPath();g.rect(526,556,68,12);P('#c9884a',3);g.fillStyle=OL;g.fillRect(532,568,6,72);g.fillRect(582,568,6,72);
+  const c={face:1,tt:τ,smug:.5,look:[1,0]};let cx=-80,cy=GY;
+  if(τ<2.5){cx=lerp(-80,700,seg(τ,0,2.5));c.tiptoe=τ*9}
+  else if(τ<3.6){cx=700;c.look=[τ<3?-1:1,0];c.headRot=Math.sin(τ*8)*.1}
+  else if(τ<4.4){cx=700;c.hr=[40,-120];c.mouth='grin';c.look=[1,-1]}
+  else if(τ<5.2){const p=seg(τ,4.4,5.2);cx=lerp(700,205,p);cy=lerp(GY,190,p)-Math.sin(p*PI)*180;c.mouth='grin'}
+  else{cx=205;cy=190;c.sit=true;c.look=[0,0];c.wink=τ>5.8&&τ<6.6;c.mouth='grin'}
+  cat(cx,cy,.95,c)}
+// living room: the cat hides the cookies up high
+function pre2(τ,t){g.drawImage(SET.liv,0,0);g.save();g.translate(600,GY);g.rotate(-1.2);g.beginPath();g.rect(0,-12,400,12);P('#d8a060',3);g.restore();g.beginPath();g.moveTo(560,GY+8);g.lineTo(612,GY+8);g.lineTo(606,GY-26);g.lineTo(566,GY-26);g.closePath();P('#c8543a',3);dumbbell(330,GY-26,.9,0);
+  const c={face:1,tt:τ,smug:.5,look:[1,-.5]};let cx=-80,cy=GY,held=true;
+  if(τ<3){cx=lerp(-80,880,seg(τ,0,3));c.tiptoe=τ*9;c.hr=[20,-120];c.hl=[-10,-120]}
+  else if(τ<4){cx=880;c.hr=[20,-120];c.hl=[-10,-120];c.look=[1,-1];c.mouth='grin'}
+  else if(τ<5){const p=seg(τ,4,5);cx=lerp(880,1050,p);cy=lerp(GY,160,p)-Math.sin(p*PI)*160;c.hr=[20,-120];c.hl=[-10,-120]}
+  else{cx=1010;cy=160;c.sit=true;held=false;c.face=-1;c.hr=[30,-70+Math.abs(Math.sin(τ*3))*20];c.hold=(hx,hy)=>cookie(hx,hy);c.mouth='smirk';c.look=[-1,.4];c.wink=τ>6&&τ<6.6}
+  if(held)c.hold=(hx,hy)=>jar(hx-10,hy+8,.8,0,true,true);
+  cat(cx,cy,.95,c);if(!held)jar(1120,160,1,0,true,true)}
+// stairwell: the chase goes down... and back up
+function pre3(τ,t){g.drawImage(SET.stairs,0,0);
+  if(τ<2){const x=lerp(80,1320,seg(τ,0,2));cat(x,stairsY(x)-Math.abs(Math.sin(τ*12))*26,.9,{run:τ*22,mouth:'grin',tt:τ,tailUp:true})}
+  if(τ>=1&&τ<3.4){const x=lerp(40,1340,seg(τ,1,3.4));fanel(x,stairsY(x)-Math.abs(Math.sin(τ*10))*20,SF,{run:τ*20,red:1,brow:'angry',mouth:'grit',cap:'shower',tt:τ})}
+  if(τ>=3.6&&τ<5){const x=lerp(1320,80,seg(τ,3.6,5));cat(x,stairsY(x)-Math.abs(Math.sin(τ*12))*26,.9,{face:-1,run:τ*22,mouth:'grin',tt:τ,tailUp:true,look:[-1,0]})}
+  if(τ>=5.2){const x=lerp(1340,60,seg(τ,5.2,7));fanel(x,stairsY(x)-Math.abs(Math.sin(τ*6))*10,SF,{face:-1,walk:τ*6,mouth:'open',tongue:60,cap:'shower',eyeBig:.9,tt:τ,sq:.95});sweat(x+40,stairsY(x)-230,τ)}
+  if(τ>=3.6&&τ<5)popText('PA-PA!',300,200,44,seg(τ,3.6,5))}
+// street: one big leap at the lamp post
+function pre4(τ,t){g.drawImage(SET.street,0,0);lampPost(760,600,0,τ,false);sandbox(1110,660,1);banana(640,GY-4,.3);bin(560,602,1,-1.4);
+  cat(810,206,.85,{sit:true,face:-1,tt:τ,look:[.5,1],eyeBig:1.3,mouth:'wavy',brow:'sad',rot:Math.sin(τ*30)*.03});
+  const o={face:1,tt:τ,look:[.5,-1],hat:false,headItem:(hx,hy)=>fishbone(hx,hy-6,.3)};let fx=725,fy=GY;
+  if(τ<1.6){o.hl=[34,-150];o.hr=[44,-150];o.cheeks=1;o.mouth='o';if(τ>.8){o.hl=[30,-110+Math.sin(τ*40)*4];o.hr=[44,-112];o.mouth='grit'}}
+  else if(τ<3.2){fx=lerp(725,420,seg(τ,1.6,3.2));o.walk=-τ*8;o.mouth='grit';o.brow='angry'}
+  else if(τ<3.5){fx=420;o.sq=.85;o.mouth='grit';o.brow='angry'}
+  else if(τ<4.3){const p=seg(τ,3.5,4.3);fx=lerp(420,722,p);fy=GY-Math.sin(p*PI)*90;o.run=τ*24;o.mouth='grit';o.brow='angry'}
+  else if(τ<6.6){fx=722;o.sx=.55;o.eyePop=0;o.closed=true;o.mouth='frown';o.hl=[40,-200];o.hr=[44,-160];fy=GY-lerp(160,0,ease(seg(τ,4.8,6.6)))}
+  else{fx=700;o.feet=[[30,0],[50,0]];o.sq=.85;o.dizzy=true;o.mouth='frown'}
+  if(fx<722||τ>=6.6)shadow(fx,GY+4,70);fanel(fx,fy,SF,o);
+  if(τ>=3.5&&τ<4.3)speed(fx-40,fy-120,1,140,5);
+  if(τ>=4.3)popText('BOINNG!',840,330,54,seg(τ,4.3,5.5));if(τ>=6.6)stars(fx,GY-220,τ)}
+// epilogue: evening, the trick done right
+function epilogue(τ,t){g.drawImage(SET.kit,0,0);teapot(1160,420,1.1);
+  g.fillStyle='#8a5a35';[600,915].forEach(lx=>{g.beginPath();g.rect(lx,470,16,170);P('#8a5a35',3)});g.beginPath();g.rect(580,460,370,16);P('#a86a3a',3);
+  const pulled=τ>=2.6;if(!pulled)tablecloth(570,960,458,48,0);
+  const hop=τ>=2.6&&τ<3.1?Math.abs(Math.sin((τ-2.6)*25))*4:0;plate(690,456-hop);cup(790,456-hop);teapot(880,458-hop,.8);
+  let ex=690,ey=450;if(τ>=5.6&&τ<6.4){const p=seg(τ,5.6,6.4);ex=lerp(690,1000,p);ey=lerp(450,GY-232*SF,p)-Math.sin(p*PI)*120}else if(τ>=6.4){ex=-999}
+  if(ex>-900)egg(ex-(τ>=5&&τ<5.6?(τ-5)*40:0),ey-hop);
+  g.beginPath();g.rect(526,556,68,12);P('#c9884a',3);g.fillStyle=OL;g.fillRect(532,568,6,72);g.fillRect(582,568,6,72);
+  const c={face:1,sit:true,tt:τ,look:[1,0]};
+  if(τ<2.6){c.hl=[20,-110];c.hr=[30,-108];c.closed=true;c.mouth='wavy'}
+  else if(τ<4){c.hl=[10,-60+Math.abs(Math.sin(τ*10))*10];c.hr=[24,-60-Math.abs(Math.sin(τ*10))*10];c.eyeBig=1.3;c.mouth='grin'}
+  else{c.closed=true;c.mouth='open';c.rot=Math.sin(τ*9)*.15}
+  cat(560,568,.9,c);
+  const o={face:-1,tt:τ,look:[.5,0],hat:true};
+  if(τ<2.6){o.hr=[70,-150];o.wink=τ>1&&τ<1.8;o.mouth='grin';o.look=[-1,0]}
+  else if(τ<4){o.hr=[-60,-150];o.hold=(hx,hy)=>clothBundle(hx,hy,τ);o.mouth='grin';o.closed=true;o.rot=-.3*Math.sin(seg(τ,3,3.6)*PI/2)}
+  else if(τ<6.4){o.mouth='open';o.closed=true;o.headDy=Math.sin(τ*20)*3}
+  else{o.mouth='open';o.closed=true;o.headDy=Math.sin(τ*20)*3;o.headItem=(hx,hy)=>egg(hx,hy+4,1.3)}
+  fanel(1010,GY,SF,o);
+  g.fillStyle='rgba(255,150,60,.12)';g.fillRect(0,0,W,H);
+  if(τ>=2.6)popText('TA-DAM!',900,280,54,seg(τ,2.6,4));if(τ>=6.4)popText('PLEOSC!',1080,300,48,seg(τ,6.4,7.6));
+  if(τ>=8.4)irisMask(800,GY-170,lerp(1500,0,ease(seg(τ,8.4,9.8))))}
+
 const SCENES=[[0,3.5,sceneLeader],[3.5,12,sceneTitle],
  [12,18,τ=>intertitle(['Orașul se trezește devreme.','Toată lumea... în afară de','*FĂNEL!'],τ,6)],
- [18,66,act1],[66,73,τ=>factCard(τ,7,'Gravitația',['Pământul trage totul în jos.','De aceea, tot ce arunci în sus... cade înapoi!'],dGravity)],
- [73,123,act2],[123,130,τ=>factCard(τ,7,'Inerția',['Lucrurile vor să rămână cum sunt: pe loc sau în mișcare.','De aceea, în mașină purtăm centura!'],dInertia)],
- [130,180,act3],[180,187,τ=>factCard(τ,7,'Pârghia',['Cu o scândură și un punct de sprijin','poți ridica ceva mult mai greu decât tine.'],dLever)],
- [187,237,act4],[237,244,τ=>factCard(τ,7,'Frecarea',['Frecarea ne ține pe loc și produce căldură.','Pe săpun e puțină, pe nisip e multă.'],dFriction)],
- [244,284,finale],[284,294,sceneRecap],[294,300,sceneEnd]];
+ [18,66,tr(act1,48,false,true)],[66,73,tr(pre1,7,true,false)],
+ [73,123,tr(act2,50,false,true)],[123,130,tr(pre2,7,true,false)],
+ [130,180,tr(act3,50,false,true)],[180,187,tr(pre3,7,true,false)],
+ [187,237,act4],[237,244,pre4],
+ [244,284,finale],[284,294,tr(epilogue,10,true,false)],[294,300,sceneEnd]];
 
 // ================= music & sfx =================
 const SFX=[];const sx=(t,k,d,p)=>SFX.push({t,k,d,p});
@@ -866,14 +933,14 @@ const SFX=[];const sx=(t,k,d,p)=>SFX.push({t,k,d,p});
   sx(b+30.6,'slideUp',.8);sx(b+31.3,'zoom',1);for(let i=0;i<6;i++)sx(b+31.8+i*.28,'tick');sx(b+34,'kettle',1.6);sx(b+34.1,'gibber',1.5);sx(b+38.3,'meow');sx(b+40.3,'meow');sx(b+42.3,'meow');sx(b+45,'slideDown',1.2);
   b=244;for(let i=0;i<4;i++)sx(b+.2+i*.3,'tick');sx(b+1.4,'slideDown',.4);for(let i=0;i<5;i++)sx(b+2.2+i*.3,'tick');sx(b+4,'slideDown',.45);sx(b+4.45,'thud');sx(b+4.6,'tweet');sx(b+5.2,'ding');sx(b+6.5,'zoom',.8);sx(b+7.3,'shake');sx(b+8,'shake');sx(b+8.5,'zoom',.7);
   for(let i=0;i<15;i++)sx(b+9.3+i*.35,'tick');sx(b+14.6,'meow');sx(b+15.5,'creak',4);sx(b+19.6,'boing');sx(b+20.3,'ding');sx(b+21.5,'kiss');sx(b+21.7,'harp');sx(b+23,'chime');sx(b+30.2,'slideUp',.6);sx(b+31.8,'ding');sx(b+33,'slideDown',2);sx(b+36,'pop');
-  [285,286.6,288.2,289.8].forEach(t=>{sx(t,'pop');sx(t+.1,'ding')});sx(291.5,'harp');sx(294.2,'tada');
+  sx(294.2,'tada');for(let i=0;i<8;i++)sx(66+i*.3,'tick');sx(70,'pop');sx(70.4,'slideUp',.7);sx(72,'ding');for(let i=0;i<10;i++)sx(123+i*.3,'tick');sx(127,'slideUp',.9);sx(129.1,'ding');sx(180,'zoom',2);sx(181,'zoom',2.4);sx(183.6,'zoom',1.4);sx(185.2,'slideDown',1.6);sx(237.2,'spit');sx(237.9,'crack');sx(238.4,'slideDown',1.2);sx(240.7,'zoom',.8);sx(241.3,'bong');sx(241.35,'boing');sx(241.8,'creak',2.4);sx(243.6,'tweet');sx(284.8,'whistleTune');sx(286.6,'swoosh');sx(286.7,'tada');for(let i=0;i<4;i++)sx(287+i*.5,'clap');sx(288.5,'giggle');sx(289.6,'swoosh');sx(290.4,'splat');sx(290.6,'giggle');sx(292.4,'slideDown',1.4);
   SFX.sort((a,b)=>a.t-b.t)})();
 const mtof=m=>440*Math.pow(2,(m-69)/12);
 const PROG={C:[48,[60,64,67]],A7:[45,[61,64,67]],D7:[50,[62,66,72]],G7:[43,[59,65,67]],F:[41,[60,65,69]],Am:[45,[60,64,69]],Dm:[50,[62,65,69]],E7:[40,[59,62,68]]};
 const RAG=['C','A7','D7','G7','C','F','G7','C'];
 const MEL=[[76,79,76,72,74,0,76,0],[73,76,79,76,81,0,79,0],[78,0,74,78,81,78,74,72],[71,74,77,74,79,-1,-1,0],[76,79,84,79,76,72,76,79],[77,81,84,81,77,0,76,77],[79,77,74,71,74,77,79,77],[76,0,72,0,72,-1,-1,0]];
 const LULL=['C','Am','F','G7'];const MINOR=['Am','Dm','E7','Am'];
-function mood(t){const R=[[3.5,'rag'],[12,'soft'],[18,'lull'],[23,'rag'],[45,'sneaky'],[53,'rag'],[66,'soft'],[73,'rag'],[86.5,'sneaky'],[91.5,'rag'],[101,'chase'],[108,'rag'],[123,'soft'],[130,'rag'],[175,'chase'],[180,'soft'],[187,'chase'],[198,'rag'],[217,'chase'],[221,'minor'],[237,'soft'],[244,'rag'],[264,'soft'],[272,'rag'],[294,'none']];let m='none';for(const [a,k] of R)if(t>=a)m=k;return m}
+function mood(t){const R=[[3.5,'rag'],[12,'soft'],[18,'lull'],[23,'rag'],[45,'sneaky'],[53,'rag'],[66,'sneaky'],[73,'rag'],[86.5,'sneaky'],[91.5,'rag'],[101,'chase'],[108,'rag'],[123,'sneaky'],[130,'rag'],[175,'chase'],[180,'chase'],[198,'rag'],[217,'chase'],[221,'minor'],[237,'rag'],[264,'soft'],[272,'rag'],[284,'soft'],[286.5,'rag'],[294,'none']];let m='none';for(const [a,k] of R)if(t>=a)m=k;return m}
 const MUS=[];
 (function buildMusic(){const beat=.5;let bar=0;
   for(let t0=3.5;t0<294;t0+=4*beat,bar++){const m=mood(t0+.01);if(m==='none')continue;const bi=bar%8,cyc=Math.floor(bar/8);
